@@ -30,6 +30,12 @@ router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
   console.log(req.body);
 
+  if (!username || !email || !password) {
+    return res
+      .status(400)
+      .json({ message: "All fields required" });
+  }
+
   try {
     const existingUser = await userDataModel.findOne({ email });
 
