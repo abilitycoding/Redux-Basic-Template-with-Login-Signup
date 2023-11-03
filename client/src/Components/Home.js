@@ -27,7 +27,7 @@ const Home = () => {
       >
         <Col className="d-flex">
           <div className="w-100">
-            <h3 className="text-center">Welcome to Home</h3>
+            <h3 className="text-center m-0">Welcome to Home</h3>
           </div>
           <span className="d-flex gap-3 mx-3">
             <Button variant="light" onClick={handleLogout}>
