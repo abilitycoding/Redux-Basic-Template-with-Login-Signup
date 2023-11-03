@@ -25,12 +25,14 @@ function Login() {
     await axios
       .post("http://localhost:5000/register", Data)
       .then((res) => {
-        console.log(res.data.message);
-        toast(`${res.data.message}`, {
-          type: "success",
-          autoClose: 1500
-        });
-        if(res.data.message === "Successfully registered"){
+        console.log(res.data);
+        if (res.data.message === "Successfully registered") {
+          toast(`${res.data.message}`, {
+            type: "success",
+            autoClose: 1500
+          });
+        }
+        if (res.data.message === "Successfully registered") {
           setTimeout(() => {
             navigate("/login");
           }, 1500);
@@ -38,6 +40,10 @@ function Login() {
       })
       .catch((err) => {
         console.log(err);
+        toast(`${err.response.data.message}`, {
+          type: "error",
+          autoClose: 1500
+        });
       });
   };
 

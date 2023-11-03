@@ -31,12 +31,24 @@ function Login() {
     await axios
       .post("http://localhost:5000/login", Data)
       .then((res) => {
-        // console.log(res.data.loginData);
-        dispatch(loginUserEmail(res.data.loginData))
-        navigate("/");
+        console.log(res.response);
+        dispatch(loginUserEmail(res.data.loginData));
+        toast(`${res.data.message}`, {
+          type: "success",
+          autoClose: 1500
+        });
+        if (res.data.message === "Login successful") {
+          setTimeout(() => {
+            navigate("/");
+          }, 1500);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data.error);
+        toast(`${err.response.data.error}`, {
+          type: "error",
+          autoClose: 1500
+        });
       });
   };
 
